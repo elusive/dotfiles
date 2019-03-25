@@ -1684,3 +1684,32 @@ cat ./credentials
 cd src/app/core/
 cd services/
 ng g service window --spec
+docker exec web rake test
+docker exec web /bin/ash
+docker exec -it web /bin/ash
+clear
+docker exec web rake db:create
+clear
+docker exec web rake db:create
+clear
+docker exec web rake db:create
+clear
+docker-compose run web rake db:create
+cd Projects/mentoring/wilson/
+cd nomster/
+docker-compose run web rake db:create
+docker-compose run web rake db:migrate
+cd ~
+ls
+la
+ls -a
+git clone git@github.com:elusive/dotfiles.git
+cd dotfiles/
+ls
+la
+./makesymlinks.sh 
+code .
+sudo chsh -s $(which zsh)
+exit
+docker ps
+exit
