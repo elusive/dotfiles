@@ -1,48 +1,3 @@
-git status
-git flow feature publish
-npm test
-git flow feature finish
-git status
-git push origin develop
-git pull -r origin develop
-git push origin develop
-npm start
-git flow feature start "m1-wrapup"
-git status
-npm start
-git status
-git commit -a -m "Add overlay to loading bar. Fix sub issues for real-time delta processing."
-git flow feature publish
-git flow feature finish
-git flow feature start "overlay"
-git pull origin develop
-git flow feature start "overlay"
-npm install
-npm test
-npm start
-npm test
-git status
-git add .
-git rm package-lock.json
-git rm package-lock.json -f
-git status
-git commit -m "Fix unit tests that use Material Overlay."
-git flow feature publish
-git flow feature finish
-git pull -r origin master
-git pull origin develop
-git reset
-git reset head
-git rebase --abort
-git status
-git push origin develop
-git pull origin develop
-git status
-git flow release start "v0.1.5"
-git flow release finish 'drilldown-api'
-git flow release start "v0.1.5"
-git branch -d 'release/drilldown-api'
-git branch
 git branch -d feature/graphing
 git flow release start "v0.1.5"
 git status
@@ -498,3 +453,48 @@ cd work/GenePOC\ Diagnostics/Source/SystemSoftware/Tools/ServiceOnlyPasswordUtil
 ./ServiceOnlyPasswordUtility.exe
 wsl
 exit
+zsh
+cheat ln
+la
+ls -a
+zsh
+cd ~
+la
+cheat -v
+zsh
+zsh
+zsh
+zsh
+exit
+exit
+kubectl
+echo $path
+echo $PATH
+kubectl
+docker
+sudo apt-get remove docker
+cd /usr/bin
+ll
+la
+ls
+dpkg -l | grep -i docker
+sudo apt-get purge -y docker-ce docker-ce-cli docker.io
+cd ~
+sudo rm -rf /var/lib/docker
+sudo rm -rf /etc/apparmor.d/docker
+sudo groupdel docker
+sudo rm -rf /var/run/docker.sock
+docker
+exit
+zsh
+wsl
+bash
+rvm -v
+rbenv -v
+zsh
+exit
+zsh
+zsh
+exit
+wsl
+zsh

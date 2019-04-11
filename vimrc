@@ -48,6 +48,7 @@ Plugin 'GertjanReynaert/cobalt2-vim-theme'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'kaicataldo/material.vim'
 Plugin 'dracula/vim'
+Plugin 'chriskempson/base16-vim' 
 
 " Test Run
 Plugin 'tpope/vim-obsession'
@@ -122,7 +123,7 @@ set path+=**
 set tags=./tags;/
 set encoding=UTF-8
 "set foldmethod=indent
-set signcolumn=yes
+"set signcolumn=yes
 " =============================================================
 "                    AUTOCOMMANDS
 " =============================================================
@@ -308,8 +309,8 @@ let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
 
 " colorscheme cobalt2
-colorscheme material
-set background=dark
+colorscheme base16-default-dark 
+" set background=dark
 
 if has("gui_running")
   "set guifont=Operator\ Mono:h18
