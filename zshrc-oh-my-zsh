@@ -3,8 +3,9 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export PATH="$HOME/.local/bin:$PATH"
 alias v="/usr/bin/vim"
+alias vz="v ~/.vimrc"
 alias vz="v ~/.zshrc"
-alias sz="s ~/.zshrc"
+alias sz="source ~/.zshrc"
 alias fix="git diff --name-only | uniq | xargs s"
 alias gres="git reset --hard HEAD; git clean -df"
 
@@ -26,12 +27,38 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # export PATH="$HOME/.composer/vendor/bin:$PATH"
-export DOCKER_HOST=tcp://localhost:2375
+export DOCKER_HOST=tcp://127.0.0.1:2375
 
 alias dc=docker-compose
 alias dcr="docker-compose run"
+
+cdl() { cd "$@" && ls; }
+
+alias gsv="git status --verbose"
+alias gs="git status"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=~/.local/bin:$PATH
 
+# Set up ssh-agent
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+    echo "Initializing new SSH agent..."
+    touch $SSH_ENV
+    chmod 600 "${SSH_ENV}"
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' >> "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add
+}
+
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    kill -0 $SSH_AGENT_PID 2>/dev/null || {
+        start_agent
+    }
+else
+    start_agent
+fi

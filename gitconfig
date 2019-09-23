@@ -32,7 +32,8 @@
 [core]
 	editor = vim
 	excludesfile = /Users/rem/.gitignore_global
-	autocrlf = input
+	autocrlf = false
+	filemode = false
 [credential]
 	helper = osxkeychain
 [push]

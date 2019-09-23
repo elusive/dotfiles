@@ -1,33 +1,3 @@
-git branch -d feature/graphing
-git flow release start "v0.1.5"
-git status
-git add .
-git commit -m "Add version file with current version number."
-git status
-git flow release publish
-npm start
-npm test
-git status
-git commit -a -m "Fix overlay issue in build result."
-git flow release publish
-git checkout develop
-git checkout release/v0.1.5 
-git status
-git flow release finish
-git checkout master
-git pull -r origin master
-git status
-git flow release finish
-git checkout release/v0.1.5 
-git flow release finish
-git commit -a -m "Fix merge conflict in default service api url."
-git status
-git push origin master
-git branch
-git checkout release/v0.1.5 
-git flow release finish
-git push --tags
-git push origin develop
 git checkout master
 git push origin master
 git commit -a  -m "Merge conflict fix.
@@ -497,4 +467,34 @@ zsh
 zsh
 exit
 wsl
+zsh
+ping 52.239.152.138
+nslookup 52.239.152.138
+cd ~/jg/work/
+cd BioTelemetrySCM/Source/groom-lake-services-cloud/
+ll
+ls
+la
+ls -a
+cd prototypes/
+la
+ls
+fix-name.sh
+ls
+vim fix-name.sh 
+./fix-name.sh
+sudo ./fix-name.sh
+zsh
+dotnet --info
+vim
+wsl
+zsh
+vim
+vim
+cd source/rails
+ll
+la
+ls
+cd wilson
+..
 zsh
