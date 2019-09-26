@@ -1,74 +1,9 @@
 
-"                      VUNDLE
-" =============================================================
-
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-abolish'
-Plugin 'vim-ruby/vim-ruby'
-" Plugin 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
-Plugin 'prettier/vim-prettier', { 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-Plugin 'w0rp/ale'
-Plugin 'rbgrouleff/bclose.vim'
-Plugin 'cohama/lexima.vim'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'SirVer/ultisnips'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'gorkunov/smartpairs.vim'
-Plugin 'djoshea/vim-autoread'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'posva/vim-vue'
-Plugin 'matze/vim-move'
-
-Plugin 'pangloss/vim-javascript'
-" Plugin 'othree/yajs.vim'
-" Plugin 'othree/es.next.syntax.vim'
-" Plugin 'othree/javascript-libraries-syntax.vim'
-" Plugin 'isRuslan/vim-es6'
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'mxw/vim-jsx', { 'for': ['jsx','javascript.jsx']}
-Plugin 'tpope/vim-commentary' " or Plugin 'tomtom/tcomment_vim'
-"Plugin 'ervandew/supertab'
-Plugin 'othree/html5.vim'
-
-" Colour Themes
-Plugin 'GertjanReynaert/cobalt2-vim-theme'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'kaicataldo/material.vim'
-Plugin 'dracula/vim'
-Plugin 'chriskempson/base16-vim' 
-
-" Test Run
-Plugin 'tpope/vim-obsession'
-Plugin 'lyokha/vim-xkbswitch' " Input Source Switcher
-Plugin 'firegoby/html_entities_helper.vim'
-Plugin 'dustinknopoff/TeaCode-Vim-Extension'
-Plugin 'tpope/vim-vinegar'
-Plugin 'itchyny/lightline.vim'
-Plugin 'alvan/vim-closetag'
-" Plugin 'ryanoasis/vim-devicons'
-
-call vundle#end()
-filetype plugin indent on
-syntax on
-
-runtime macros/matchit.vim
-
 " =============================================================
 "                 GENERAL SETTINGS
 " =============================================================
+
+source ~\dotfiles\vim\colors\railscasts.vim
 
 set backspace=indent,eol,start
 set history=1000
@@ -81,49 +16,13 @@ set autoread
 set autowrite
 set backupdir=~/.tmp
 set directory=~/.tmp
-set viminfo+=!
-set guioptions-=T
-set laststatus=2
-set scrolloff=3
-set sidescrolloff=4
-set hidden
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set regexpengine=1
-" set relativenumber
 set number
 set wrap
-set linebreak
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set mouse=a
-set shell=bash
-set clipboard=unnamed
-set winwidth=100
-set winheight=5
-set winminheight=5
-set winheight=999
-set noswapfile
-set wildmenu
-set nostartofline
-" (Hopefully) removes the delay when hitting esc in insert mode
-" set noesckeys
 set ttimeout
 set ttimeoutlen=1
 set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
 set ttyfast
-" set lazyredraw
-" set re=1
 
-set path+=**
-set tags=./tags;/
-set encoding=UTF-8
-"set foldmethod=indent
-"set signcolumn=yes
 " =============================================================
 "                    AUTOCOMMANDS
 " =============================================================
@@ -220,87 +119,9 @@ vnoremap Y myY`y
 
 nnoremap <leader>s :w<cr>
 
-" =============================================================
-"                 PLUGINS CONFIGURATION
-" =============================================================
-
-" NERDTree
-nnoremap <leader>q :NERDTreeToggle<cr>
-let NERDTreeMinimalUI=1
-let NERDTreeShowLineNumbers=1
-let NERDTreeQuitOnOpen=1
-let NERDTreeHijackNetrw = 0
-
-" Lightline
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
-
-" Easymotion
-nmap S <Plug>(easymotion-s2)
-nmap s <Plug>(easymotion-s)
-
-" Vim Move
-let g:move_key_modifier = 'C'
-
-" Vue
-" let g:vue_disable_pre_processors=1
-
-" Markdown
-let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
-
-" JSX
-let g:jsx_ext_required = 0
-let g:javascript_enable_domhtmlcss = 1
-let g:used_javascript_libs = 'underscore,react'
-
-" Emmet
-" let g:user_emmet_settings={'javascript.jsx': {'extends':'jsx'}}
-" let g:user_emmet_leader_key='<C-t>'
-
-" Tag Autoclose
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
-
-" Layout switcher
-let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
-let g:XkbSwitchEnabled = 1
-
-" Prettier
-nmap <Leader>p <Plug>(Prettier)
-let g:prettier#exec_cmd_async = 1
-let g:prettier#config#print_width = 80
-let g:prettier#config#tab_width = 2
-let g:prettier#config#use_tabs = 'false'
-let g:prettier#config#semi = 'true'
-let g:prettier#config#single_quote = 'false'
-let g:prettier#config#bracket_spacing = 'true'
-let g:prettier#config#jsx_bracket_same_line = 'false'
-let g:prettier#config#trailing_comma = 'none'
-let g:prettier#config#parser = 'babylon'
-let g:prettier#config#config_precedence = 'prefer-file'
-let g:prettier#config#prose_wrap = 'preserve'
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-
-" Ale
-let g:ale_set_highlights = 0
-nmap <silent> <Leader>nn <Plug>(ale_previous_wrap)
-nmap <silent> <Leader>np <Plug>(ale_next_wrap)
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'ruby': [],
-\}
-
 
 " =============================================================
-"                      APPEARENCE
+"                      APPEARANCE
 " =============================================================
 
 "set term=xterm
@@ -309,7 +130,7 @@ let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
 
 " colorscheme cobalt2
-colorscheme base16-default-dark 
+" colorscheme base16-default-dark 
 " set background=dark
 
 if has("gui_running")
@@ -317,7 +138,6 @@ if has("gui_running")
   set guifont=Input\ Mono:h18
   set linespace=6
   set guioptions-=r
-  colorscheme material
   let g:material_theme_style = 'default' " 'palenight' | 'dark'
   let g:material_terminal_italics = 1
 endif
@@ -359,13 +179,3 @@ function! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-
-" EPUB macros
-" let @a = '0vf/f>c<p>A€kb€kb€kb€kb€kbp>j'
-" let @b = 'gg/<p>f>a<span class="dropcap">la</span> '
-" let @c = ':%s/&#151;/€PSâ€”[201~/g'
-" let @f = '/fnres€kbf F<vf/;;f>c<a href="./endnotes.xhtml#note-1" id="note-€kbref-1" epub:type="noteref" style="vertical-align: supre€kb€kber;">1</a>F1F1F1'
-" let @n = 'O<li id="note-1" epub:type="rearnote"><p>dd==0^0f(i<i>f)€kb€kbf)a</i>o€kbo<a href="./ch-2.xhtml#noteref-1" eput:€kb€kbb:type="se:referrer">€PSâ†©[201~<a€kb/a>€kb</p>€kb</li>j'
-let @j = 'yGoo```jsPG'
-let @h = 'yGoo```htmlPG'
-let @t = 'yGoo```PG'
