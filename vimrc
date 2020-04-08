@@ -1,10 +1,14 @@
 "Pathogen
 call pathogen#runtime_append_all_bundles()
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+" airline settings
+set laststatus=2
+set t_Co=256
+set noshowmode
 
+"============== Clipboard keys ===============
+let @+=42
+let @*=42
 
 "============== Custom scripts ===============
 source ~/.vim/after/syntaxcheck.vim
