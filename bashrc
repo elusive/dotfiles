@@ -17,7 +17,7 @@ if [ -f /home/$USER/.bash/functions ]; then
     . /home/$USER/.bash/functions 
 fi  
 
-# custom functions 
+# custom aliases 
 if [ -f /home/$USER/.bash/aliases ]; then
     . /home/$USER/.bash/aliases 
 fi  
