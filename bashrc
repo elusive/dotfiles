@@ -132,11 +132,6 @@ export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 export CLASSPATH="/usr/local/aws-java-sdk-1.11.119/lib/*:/usr/local/aws-java-sdk-1.11.119/third-party/lib/*:"
 
-export AWS_REGION=us-west-2
-export AWS_ACCESS_KEY_ID=AKIAIVYY5TWKTUNV4HXA
-export AWS_SECRET_ACCESS_KEY=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
-
-export AWS_ACCESS_KEY=AK
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
