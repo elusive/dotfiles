@@ -5,8 +5,8 @@ set -o vi
 
 export PATH=$PATH":/home/$USER/bin/:/home/$USER/.local/bin"
 
-if [ -e $HOME/.bash/aliases ]; then
-  source $HOME/.bash/aliases 
+if [ -e $HOME/.aliases ]; then
+  source $HOME/.aliases 
 fi
 
 if [ -f `which powerline-daemon` ]; then
