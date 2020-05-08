@@ -25,7 +25,7 @@ ZSH_THEME=cdimascio-lambda   #"powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, exercism, exercism_completion)
+plugins=(dotnet docker git)
 
 source $ZSH/oh-my-zsh.sh
 
