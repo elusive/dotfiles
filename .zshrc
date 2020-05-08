@@ -32,8 +32,8 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # use external file for all aliases 
-if [ -e $HOME/.zsh/aliases.zsh ]; then 
-  source $HOME/.zsh/aliases.zsh 
+if [ -e $HOME/.aliases ]; then 
+  source $HOME/.aliases 
 fi
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -50,8 +50,8 @@ fi
 # export ARCHFLAGS="-arch x86_64"
 
 # setup ssh agent
-eval `ssh-agent`
-ssh-add
+#eval `ssh-agent`
+#ssh-add
 clear
 
 # setup go root and path
