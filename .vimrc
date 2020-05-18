@@ -4,6 +4,7 @@
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
+syntax on                     " so syntax files load
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -25,6 +26,8 @@ Plugin 'tpope/vim-surround'                         " Change surrounding marks
 Plugin 'chiel92/vim-autoformat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomasr/molokai'
+Plugin 'martinda/jenkinsfile-vim-syntax'        " jenkinsfiles
+Plugin 'mattn/emmet-vim'                        " emmet!
 
 
 call vundle#end()		" required, all plugins must appear before this line.

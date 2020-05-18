@@ -35,6 +35,11 @@ source $ZSH/oh-my-zsh.sh
 if [ -e $HOME/.aliases ]; then 
   source $HOME/.aliases 
 fi
+
+if [ -e $HOME/.functions ]; then
+    source $HOME/.functions
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
