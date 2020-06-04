@@ -15,6 +15,7 @@ then
 fi
 
 # List directory contents
+alias ls=alias ls='command ls -l --human-readable --group-directories-first --color=auto -I NTUSER.DAT\* -I ntuser.dat\*'
 alias sl=ls
 alias la='ls -AF'       # Compact view, show hidden
 alias ll='ls -al'
