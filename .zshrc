@@ -2,16 +2,16 @@
 
 # Path to your oh-my-zsh installation.
 # If you come from bash you might have to change your $PATH.
-  export ZSH="/home/jogi/.oh-my-zsh"
+export ZSH="/home/jogi/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME=cdimascio-lambda   #"powerlevel9k/powerlevel9k"
-#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+ZSH_THEME=agnoster  #cdimascio-lambda   #"powerlevel9k/powerlevel9k"
 
-# Set list of themes to pick from when loading at random
+## Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
@@ -26,6 +26,9 @@ ZSH_THEME=cdimascio-lambda   #"powerlevel9k/powerlevel9k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(dotnet docker git)
+
+# turn on git completion in zsh
+autoload -Uz compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,3 +76,7 @@ export DOCKER_HOST=tcp://localhost:2375
 
 # source ~/.autoenv/activate.sh
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export DISPLAY=localhost:0.0
+
+export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+

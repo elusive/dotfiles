@@ -39,4 +39,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dc="docker-compose"
 alias sshapi="ssh jogi@209.124.64.75 -p 7822"
 
-
+# Git Aliases
+alias gs='git status'
+alias ga='git add .'
+alias gac='git commit -am'

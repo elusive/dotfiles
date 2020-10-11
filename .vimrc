@@ -1,21 +1,22 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle for Managing Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:mapleader = "\<Space>"
 
-set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax on                     " so syntax files load
+syntax enable   
+set nocompatible              " be iMproved, required
+set hidden
+set nowrap
+set cmdheight=2
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()		" required, all plugins must appear after this line.
 
 Plugin 'VundleVim/Vundle.vim'  " Vundle
-Plugin 'itchyny/lightline.vim'                " Lightline statusbar
-Plugin 'vifm/vifm.vim'
 Plugin 'vimwiki/vimwiki'                      " Vim wiki
-Plugin 'scrooloose/nerdtree'			" added nerdtree
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'frazrepo/vim-rainbow'
 Plugin 'vim-python/python-syntax'
@@ -28,34 +29,59 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tomasr/molokai'
 Plugin 'martinda/jenkinsfile-vim-syntax'        " jenkinsfiles
 Plugin 'mattn/emmet-vim'                        " emmet!
-
+Plugin 'scrooloose/nerdtree'
+Plugin 'gruvbox-community/gruvbox'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'neoclide/coc.nvim'
 
 call vundle#end()		" required, all plugins must appear before this line.
 
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
 " set molokai color scheme to original monokai colors
 let g:molokai_original = 1
 
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+"
+" some Airline Settings
+"
+let g:airline_theme='wombat'
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#formatter='unique_tail'
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => Remap Keys
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Remap ESC to ii
-:imap ii <Esc>
+" Escaping is the worst
+inoremap kj <Esc>
+inoremap ii <Esc>
+nnoremap <C-c> <Esc>
+
+" Using TAB in general mode to move buffers
+nnoremap <TAB> :bnext<CR>
+nnoremap <S-TAB> :bprevious<CR>
+
+" Edit Vim config file in a new tab.
+map <Leader>ev :tabnew $MYVIMRC<CR>
+
+" Source Vim config file.
+map <Leader>sv :source $MYVIMRC<CR>
+
+
+" .............................................................................
+" scrooloose/nerdtree
+" .............................................................................
+let g:NERDTreeShowHidden=1
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeQuitOnOpen=0
+
+" Open nerd tree at the current file or close nerd tree if pressed again.
+nnoremap <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" => Powerline
+"" => Lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
       \ 'colorscheme': 'wombat', 
@@ -67,12 +93,9 @@ set laststatus=2
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
-syntax enable   
 set number relativenumber
 let g:rehash256 = 1
 
-" Uncomment to prevent non-normal modes showing in powerline and below powerline.
-set noshowmode
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -87,49 +110,9 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" => NERDTree
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Uncomment to autostart the NERDTree
-" autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '►'
-let g:NERDTreeDirArrowCollapsible = '▼'
-let NERDTreeShowLineNumbers=1
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize=38
+set smartindent
+set autoindent
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" => Colors
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
-highlight CursorLineNr     ctermfg=7    ctermbg=8       cterm=none
-highlight VertSplit        ctermfg=0    ctermbg=8       cterm=none
-highlight Statement        ctermfg=2    ctermbg=none    cterm=none
-highlight Directory        ctermfg=4    ctermbg=none    cterm=none
-highlight StatusLine       ctermfg=7    ctermbg=8       cterm=none
-highlight StatusLineNC     ctermfg=7    ctermbg=8       cterm=none
-highlight NERDTreeClosable ctermfg=2	
-highlight NERDTreeOpenable ctermfg=8
-highlight Comment          ctermfg=4    ctermbg=none    cterm=none
-highlight Constant         ctermfg=12   ctermbg=none    cterm=none
-highlight Special          ctermfg=4    ctermbg=none    cterm=none
-highlight Identifier       ctermfg=6    ctermbg=none    cterm=none
-highlight PreProc          ctermfg=5    ctermbg=none    cterm=none
-highlight String           ctermfg=12   ctermbg=none    cterm=none
-highlight Number           ctermfg=1    ctermbg=none    cterm=none
-highlight Function         ctermfg=1    ctermbg=none    cterm=none
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vifm
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => VimWiki
