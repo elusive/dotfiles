@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/jogi/.config/nvim'
+let g:netrw_dirhist_2='/home/jogi/.config/nvim/autoload'
+let g:netrw_dirhist_3='/home/jogi/.config/nvim'
+let g:netrw_dirhist_4='/home/jogi/.config/nvim/general'
+let g:netrw_dirhist_5='/home/jogi/.config/nvim'
+let g:netrw_dirhist_6='/home/jogi/.config/nvim/keys'
