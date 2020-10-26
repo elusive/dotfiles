@@ -1,3 +1,4 @@
+
 " set leader key/s
 let g:mapleader = "\<Space>"
 
@@ -26,7 +27,6 @@ set noswapfile
 set updatetime=300                      " Faster completion
 set timeoutlen=500                      " By default timeoutlen is 1000 ms
 set colorcolumn=80
-set mouse=a
 set guioptions-=m                       " remove menu bar
 set guioptions-=T
 set guioptions-=r

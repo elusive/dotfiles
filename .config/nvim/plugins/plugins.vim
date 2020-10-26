@@ -19,6 +19,8 @@ call plug#begin($HOME.'/AppData/Local/nvim/autoload/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'voldikss/vim-floaterm'
+    Plug 'scrooloose/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
 
     " Snippets
     Plug 'honza/vim-snippets'

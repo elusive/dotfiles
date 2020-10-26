@@ -8,8 +8,8 @@ inoremap ii <Esc>
 nnoremap <C-c> <Esc>
 
 " Using TAB in general mode to move between buffers
-nnoremap <TAB> :bnext<CR>
-nnoremap <S-TAB> :bprevious<CR>
+nnoremap <silent> <TAB> :bnext<CR> <bar> :call SyncNerdTree()<CR> <bar> <C-w>l
+nnoremap <silent> <S-TAB> :bprevious<CR> <bar> :call SyncNerdTree()<CR> <bar> <C-w>l
 
 " Close buffer w/o quiting
 nnoremap <leader>q :bp<CR>:bd #<CR>
@@ -30,3 +30,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" C++ compile and run
+autocmd filetype cpp nnoremap <F5> :w <bar> !g++ -ulimit -Wall -Wno-unused-result -std=c++11   -O2   % -o %:r && ./%:r < ./input.txt <CR>
+autocmd filetype cpp nnoremap <F6> :w <bar> !g++ -ulimit -Wall -Wno-unused-result -std=c++11   -O2   % -o %:r && ./%:r <CR>
+autocmd BufNewFile  *.cpp 0r ~/.config/nvim/template/template.cpp 
+autocmd BufRead *.cpp if getfsize(expand('%'))==0|$r ~/.config/nvim/template/template.cpp|endif
+

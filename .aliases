@@ -1,4 +1,5 @@
 # Example aliases
+alias vim="nvim"
 alias vz="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
 alias vb="vim ~/.bashrc"
@@ -43,3 +44,5 @@ alias sshapi="ssh jogi@209.124.64.75 -p 7822"
 alias gs='git status'
 alias ga='git add .'
 alias gac='git commit -am'
+alias gc='git commit'
+alias gco='git checkout'
