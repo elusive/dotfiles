@@ -5,6 +5,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax on                     " so syntax files load
+set nowrap
+
+let mapleader=" "
+let maplocalleader=" "
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -12,7 +16,7 @@ call vundle#begin()		" required, all plugins must appear after this line.
 
 Plugin 'VundleVim/Vundle.vim'  " Vundle
 Plugin 'itchyny/lightline.vim'                " Lightline statusbar
-Plugin 'vifm/vifm.vim'
+Plugin 'mengelbrecht/lightline-bufferline'
 Plugin 'vimwiki/vimwiki'                      " Vim wiki
 Plugin 'scrooloose/nerdtree'			" added nerdtree
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -28,9 +32,16 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tomasr/molokai'
 Plugin 'martinda/jenkinsfile-vim-syntax'        " jenkinsfiles
 Plugin 'mattn/emmet-vim'                        " emmet!
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'antlypls/vim-colors-codeschool'
+Plugin 'morhetz/gruvbox'
+Plugin 'uu59/vim-herokudoc-theme'
 
 
-call vundle#end()		" required, all plugins must appear before this line.
+call vundle#end()		
+" required, all plugins must appear before this line.
+
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -43,7 +54,7 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
 " set molokai color scheme to original monokai colors
-let g:molokai_original = 1
+colorscheme codeschool
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
@@ -51,15 +62,66 @@ let g:molokai_original = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => Remap Keys
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set pastetoggle=<F3>
+
 "Remap ESC to ii
 :imap ii <Esc>
+noremap j gj
+noremap k gk
+noremap <Down> gj
+noremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+" Navigate around splits with a single key combo.
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+noremap <C-k> <C-w><C-k>
+nnoremap <C-j> <C-w><C-j>
+
+" TAB in general mode will move to text buffer
+nnoremap <TAB> :bnext<CR>
+" SHIFT-TAB will go back
+nnoremap <S-TAB> :bprevious<CR>
+
+" Alternate way to save
+nnoremap <C-s> :w<CR>
+" Alternate way to quit
+nnoremap <C-Q> :wq!<CR>
+" Use control-c instead of escape
+nnoremap <C-c> <Esc>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" => Powerline
+" Edit vim config file in a new tab.
+map <Leader>ev :tabnew $MYVIMRC<CR>
+
+" Source Vim config file.
+map <Leader>sv :source $MYVIMRC<CR>
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-      \ 'colorscheme': 'wombat', 
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'tabline': {
+      \   'left': [ ['buffers'] ],
+      \   'right': [ ['close'] ]
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
       \ }
+      \ }
+
+let g:lightline = {
+            \ 'colorscheme': 'wombat', 
+            \ }
 
 " Always show statusline
 set laststatus=2
@@ -68,7 +130,7 @@ set laststatus=2
 set t_Co=256
 
 syntax enable   
-set number relativenumber
+set number "nonumber "number relativenumber
 let g:rehash256 = 1
 
 " Uncomment to prevent non-normal modes showing in powerline and below powerline.
@@ -92,7 +154,7 @@ set tabstop=4
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Uncomment to autostart the NERDTree
 " autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
+:nnoremap <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '►'
 let g:NERDTreeDirArrowCollapsible = '▼'
 let NERDTreeShowLineNumbers=1
@@ -100,42 +162,21 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let g:NERDTreeWinSize=38
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" => Colors
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
-highlight CursorLineNr     ctermfg=7    ctermbg=8       cterm=none
-highlight VertSplit        ctermfg=0    ctermbg=8       cterm=none
-highlight Statement        ctermfg=2    ctermbg=none    cterm=none
-highlight Directory        ctermfg=4    ctermbg=none    cterm=none
-highlight StatusLine       ctermfg=7    ctermbg=8       cterm=none
-highlight StatusLineNC     ctermfg=7    ctermbg=8       cterm=none
-highlight NERDTreeClosable ctermfg=2	
-highlight NERDTreeOpenable ctermfg=8
-highlight Comment          ctermfg=4    ctermbg=none    cterm=none
-highlight Constant         ctermfg=12   ctermbg=none    cterm=none
-highlight Special          ctermfg=4    ctermbg=none    cterm=none
-highlight Identifier       ctermfg=6    ctermbg=none    cterm=none
-highlight PreProc          ctermfg=5    ctermbg=none    cterm=none
-highlight String           ctermfg=12   ctermbg=none    cterm=none
-highlight Number           ctermfg=1    ctermbg=none    cterm=none
-highlight Function         ctermfg=1    ctermbg=none    cterm=none
+" Disable netrw.
+let g:loaded_netrw  = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
 
+nnoremap <silent> <expr> <F6> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vifm
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => VimWiki
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                        \ 'syntax': 'markdown', 'ext': '.md'}]
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mouse Scrolling
@@ -170,5 +211,4 @@ set guioptions-=L  "remove left-hand scroll bar
 " " => Removes pipes | that act as seperators on splits
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set fillchars+=vert:\ 
-
 
