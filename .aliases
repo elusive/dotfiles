@@ -1,6 +1,6 @@
 # Example aliases
 alias vim='nvim'
-alias vz=''nvim ~/.zshrc'
+alias vz='nvim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias vb="vim ~/.bashrc"
 alias sb="source ~/.bashrc"
