@@ -5,6 +5,7 @@
 .cargo/
 .config/yarn/
 .config/configstore/
+.config/wslu/
 .dbus/
 .docker/
 .keychain/
