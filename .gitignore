@@ -1,6 +1,8 @@
 .dotfiles
 
 
+.config/coc/mru
+
 .cache/
 .cargo/
 .config/yarn/
@@ -10,6 +12,7 @@
 .docker/
 .keychain/
 .local/
+.oh-my-zsh/
 .npm/
 .nvm/
 .pm2/
@@ -31,9 +34,17 @@
 .prev_dir
 .profile
 .selected_editor
+.viminfo
+.yarnrc
 
 
 AppData/
 Downloads/
 exercism/
 src/
+learn/
+scripts/
+work/
+
+!.ssh/config
+
