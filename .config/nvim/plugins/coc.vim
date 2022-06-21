@@ -3,7 +3,6 @@ let g:coc_global_extensions = [
     \ 'coc-actions',
     \ 'coc-sh',
     \ 'coc-lists',
-    \ 'coc-emmet',
     \ 'coc-tasks',
     \ 'coc-pairs',
     \ 'coc-tsserver',
@@ -20,6 +19,10 @@ let g:coc_global_extensions = [
     \ 'coc-yank',
     \ 'coc-json',
     \ 'coc-marketplace',
+    \ 'coc-deno',
+    \ 'coc-docker',
+    \ 'coc-markdownlint',
+    \ 'coc-go'
     \ ]
     " \ 'coc-tabnine',
     " \ 'coc-highlight',"

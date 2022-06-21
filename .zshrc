@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -8,8 +15,8 @@ export ZSH="/home/jogi/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-ZSH_THEME=agnoster  #cdimascio-lambda   #"powerlevel9k/powerlevel9k"
+POWERLEVEL10K_PROMPT_ON_NEWLINE=true
+ZSH_THEME="powerlevel10k/powerlevel10k" #agnoster  #cdimascio-lambda   #"powerlevel9k/powerlevel9k"
 
 ## Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -63,12 +70,13 @@ fi
 clear
 
 # setup go root and path
-export GOROOT=/usr/lib/go
-export GOPATH=$Home/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
+export GOROOT=/usr/local/go
+export GOPATH=/home/jogi/learn/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-# setup docker host (allows use of docker in windows from wsl)
-export DOCKER_HOST=tcp://localhost:2375 
+# setup dotnet cli 
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$DOTNET_ROOT:$PATH
 
 # setup nvm
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
@@ -80,3 +88,19 @@ export DISPLAY=localhost:0.0
 
 export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
+# due to previous installs/configuration for docker with WSL2 you must:
+unset DOCKER_HOST
+
+# setup docker host (allows use of docker in windows from wsl)
+#export DOCKER_HOST=tcp://localhost:2375 
+
+
+export PATH=~/bin:$PATH
+
+# xserver for wsl2
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+export LIBGL_ALWAYS_INDIRECT=true
+# neofetch
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

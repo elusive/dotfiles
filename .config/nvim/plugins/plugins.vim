@@ -11,6 +11,7 @@ call plug#begin($HOME.'/.config/nvim/autoload/plugged')
     Plug 'sheerun/vim-polyglot'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'theprimeagen/vim-be-good'
@@ -21,8 +22,24 @@ call plug#begin($HOME.'/.config/nvim/autoload/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'ryanoasis/vim-devicons'
     Plug 'ctrlpvim/ctrlp.vim'
-    
+    Plug 'elmcast/elm-vim'
+    Plug 'neovim/nvim-lspconfig'    
+    Plug 'mattn/emmet-vim'
 
+    
+    " Neovim Tree shitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground'
+
+    " Telescope
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+    " Slime for Vim
+    Plug 'vlime/vlime', {'rtp': 'vim/'}
+    
     " Snippets
     Plug 'honza/vim-snippets'
     Plug 'mattn/emmet-vim'
