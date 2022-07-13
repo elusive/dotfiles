@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/jogi/learn/node/master-class/The-NodeJS-Master-Class/Section 2/Anatomy of a Node Application'
+let g:netrw_dirhist_5='/home/jogi/learn/node/master-class/The-NodeJS-Master-Class/Section 2'
+let g:netrw_dirhist_4='/home/jogi/learn/node/master-class/The-NodeJS-Master-Class'
+let g:netrw_dirhist_3='/home/jogi/learn/node/master-class'
+let g:netrw_dirhist_2='/home/jogi/learn/node'
+let g:netrw_dirhist_1='/home/jogi/learn'
