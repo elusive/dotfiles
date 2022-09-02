@@ -100,7 +100,11 @@ export PATH=~/bin:$PATH
 # xserver for wsl2
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 export LIBGL_ALWAYS_INDIRECT=true
-# neofetch
+# fix pager and less values
+export PAGER=""
+export LESS="-F -X -R"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+

@@ -56,9 +56,16 @@ return packer.startup(function(use)
         'kyazdani42/nvim-web-devicons', -- optional, for file icons
       }
     }
+    use "akinsho/bufferline.nvim"
+    use "moll/vim-bbye"
+    use { 
+        "nvim-lualine/lualine.nvim",
+        requires = { "kyazdani42/nvim-web-devicons", opt = true }
+    }
+
     -- color schemes
     use {"adisen99/codeschool.nvim", requires = {"rktjmp/lush.nvim"}}
-    use "sainnhe/sonokai"
+    use "folke/tokyonight.nvim"
     use "shaunsingh/nord.nvim"
     use "luisiacc/gruvbox-baby"
 
@@ -68,6 +75,8 @@ return packer.startup(function(use)
     use "hrsh7th/cmp-path"          -- path completions
     use "hrsh7th/cmp-cmdline"       -- cmdline completions
     use "saadparwaiz1/cmp_luasnip"  -- snippet completions
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-nvim-lua"
 
     -- snippets
     use "L3MON4D3/LuaSnip"          --snippet engine
@@ -76,6 +85,7 @@ return packer.startup(function(use)
     -- LSP
     use "neovim/nvim-lspconfig"     -- enable LSP
     use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+    
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"
@@ -91,7 +101,64 @@ return packer.startup(function(use)
     -- Git
     use "lewis6991/gitsigns.nvim"
 
+    -- Debugging
+--     use { "puremourning/vimspector" }
+    use {
+      "mfussenegger/nvim-dap",
+      opt = true,
+      module = { "dap" },
+      requires = {
+        "alpha2phi/DAPInstall.nvim",
+        -- { "Pocco81/dap-buddy.nvim", branch = "dev" },
+        "theHamsta/nvim-dap-virtual-text",
+        "rcarriga/nvim-dap-ui",
+        "mfussenegger/nvim-dap-python",
+        "nvim-telescope/telescope-dap.nvim",
+        { "leoluz/nvim-dap-go", module = "dap-go" },
+        { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+      },
+      config = function()
+        require("config.dap").setup()
+      end,
+      disable = false,
+    }  
 
+    --rust
+    use {
+      "simrat39/rust-tools.nvim",
+      requires = { "nvim-lua/plenary.nvim", "rust-lang/rust.vim" },
+      opt = true,
+      module = "rust-tools",
+      ft = { "rust" },
+      config = function()
+        require("config.rust").setup()
+      end,
+    }
+    use {
+      "saecki/crates.nvim",
+      event = { "BufRead Cargo.toml" },
+      requires = { { "nvim-lua/plenary.nvim" } },
+      config = function()
+        -- local null_ls = require "null-ls"
+        require("crates").setup {
+          null_ls = {
+            enabled = true,
+            name = "crates.nvim",
+          },
+        }
+      end,
+    }
+
+
+    -- Markdown
+    use {
+      "iamcco/markdown-preview.nvim",
+      run = function()
+        vim.fn["mkdp#util#install"]()
+      end,
+      ft = "markdown",
+      cmd = { "MarkdownPreview" },
+    }
 
 
   -- Automatically set up your configuration after cloning packer.nvim
