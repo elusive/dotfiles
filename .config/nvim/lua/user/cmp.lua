@@ -131,12 +131,4 @@ cmp.setup {
     },
   })
 
-  -- Use cmdline & path source for ':'
-  cmp.setup.cmdline(":", {
-    sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      { name = "cmdline" },
-    }),
-  })
 

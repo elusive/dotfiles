@@ -103,25 +103,13 @@ return packer.startup(function(use)
 
     -- Debugging
 --     use { "puremourning/vimspector" }
-    use {
-      "mfussenegger/nvim-dap",
-      opt = true,
-      module = { "dap" },
-      requires = {
-        "alpha2phi/DAPInstall.nvim",
-        -- { "Pocco81/dap-buddy.nvim", branch = "dev" },
-        "theHamsta/nvim-dap-virtual-text",
-        "rcarriga/nvim-dap-ui",
-        "mfussenegger/nvim-dap-python",
-        "nvim-telescope/telescope-dap.nvim",
-        { "leoluz/nvim-dap-go", module = "dap-go" },
-        { "jbyuki/one-small-step-for-vimkind", module = "osv" },
-      },
-      config = function()
-        require("config.dap").setup()
-      end,
-      disable = false,
-    }  
+    use "mfussenegger/nvim-dap"
+    use "alpha2phi/DAPInstall.nvim"
+    use "theHamsta/nvim-dap-virtual-text"
+    use "rcarriga/nvim-dap-ui"
+    use "mfussenegger/nvim-dap-python"
+    use "nvim-telescope/telescope-dap.nvim"
+    use "leoluz/nvim-dap-go"
 
     --rust
     use {

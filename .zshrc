@@ -92,7 +92,7 @@ export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/
 unset DOCKER_HOST
 
 # setup docker host (allows use of docker in windows from wsl)
-#export DOCKER_HOST=tcp://localhost:2375 
+export DOCKER_HOST=tcp://localhost:2375 
 
 
 export PATH=~/bin:$PATH

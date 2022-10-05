@@ -1,5 +1,3 @@
-local ok, dap = pcall(require, "dap")
-if not ok then return end
 
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
@@ -14,26 +12,26 @@ keymap("n", "<leader>db", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.inp
 keymap("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", opts)
 keymap("n", "<leader>dt", ":lua require'dap-go'.debug_test()<CR>", opts)
 
-require("nvim-dap-virtual-text").setup()
 
 
 -- language debuggers
 require('user.dap.go').setup()
 require('user.dap.python').setup()
 require('user.dap.lua').setup()
-require('user.dap.rust').setup()
+--require('user.dap.rust').setup()
 require('user.dap.typescript').setup()
 
 
 -- dap ui 
-require("dapui").setup()
-local dap, dapui = require("dap"), require("dapui")
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
+require("nvim-dap-virtual-text").setup()
+--require("dapui").setup()
+--local dap, dapui = require("dap"), require("dapui")
+--dap.listeners.after.event_initialized["dapui_config"] = function()
+--  dapui.open()
+--end
+--dap.listeners.before.event_terminated["dapui_config"] = function()
+--  dapui.close()
+--end
+--dap.listeners.before.event_exited["dapui_config"] = function()
+--  dapui.close()
+--end
