@@ -1,0 +1,5 @@
+require "jogi.options"
+require "jogi.plugins"
+require "jogi.colorscheme"
+require "jogi.keymaps"
+--require "jogi.vimspector"
