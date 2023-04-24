@@ -7,7 +7,7 @@ function M.setup()
         history = true,
         updateevents = "TextChanged, TextChangedI",
         enable_autosnippets = false,
-        store_selection_keys = "<C-q>"
+        store_selection_keys = "<C-q>",
         ext_opts = {
           [types.choiceNode] = {
             active = {
