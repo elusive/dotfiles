@@ -112,7 +112,7 @@ return packer.startup(function(use)
       "TimUntersberger/neogit",
       cmd = "Neogit",
       config = function()
-        require("user.neogit").setup()
+        require("jogi.neogit").setup()
       end,
     }
 
@@ -134,7 +134,7 @@ return packer.startup(function(use)
       module = "rust-tools",
       ft = { "rust" },
       config = function()
-        require("user.rusttool").setup()
+        require("jogi.rusttool").setup()
       end,
     }
     use {
@@ -159,7 +159,7 @@ return packer.startup(function(use)
       "Matt-A-Bennett/vim-surround-funk",
       event = "BufReadPre",
       config = function()
-        require("user.surroundfunk").setup()
+        require("jogi.surroundfunk").setup()
       end,
       disable = true,
     }
