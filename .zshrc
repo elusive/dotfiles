@@ -108,3 +108,10 @@ export LESS="-F -X -R"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
+
+# bun completions
+[ -s "/home/jogi/.bun/_bun" ] && source "/home/jogi/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -59,3 +59,4 @@ eval `keychain --clear --agents ssh --eval id_rsa --eval github_rsa`
 export DISPLAY=localhost:0.0
 export DISPLAY=localhost:0.0
 . "$HOME/.cargo/env"
+PATH="$HOME/.local/bin:$PATH"
