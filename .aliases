@@ -1,8 +1,9 @@
 # Example aliases
+alias edit='hx'
 alias vim='nvim'
 alias vz='nvim ~/.zshrc'
 alias sz='source ~/.zshrc'
-alias vb="vim ~/.bashrc"
+alias vb="nvim ~/.bashrc"
 alias sb="source ~/.bashrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias dc="docker-compose"
@@ -42,9 +43,19 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dc="docker-compose"
 alias sshapi="ssh jogi@209.124.64.75 -p 7822"
 
+alias clc='clear'
+alias clr='clear'
+alias cls='clear'
+
 # Git Aliases
 alias gs='git status'
 alias ga='git add .'
 alias gac='git commit -am'
 alias gc='git commit'
 alias gco='git checkout'
+alias gl="git log --graph --oneline"
+
+
+# Scripts Aliases
+alias tm='bash ./scripts/tmux-start.sh'
+

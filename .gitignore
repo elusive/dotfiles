@@ -14,6 +14,7 @@
 .config/wslu/
 .dbus/
 .docker/
+.fonts/
 .keychain/
 .local/
 .oh-my-zsh/
@@ -53,3 +54,52 @@ work/
 
 !.ssh/config
 
+.config/evolution/
+.config/enchant/
+.config/geany/
+.config/google-chrome/ .config/google-chrome-beta/ .config/google-chrome-unstable/
+.config/pulse/
+.config/nitrogen/
+.config/inkscape/
+.config/terminator/
+.config/vivaldi/ .config/vivaldi-snapshot/
+downloads/
+Arduino/
+files/
+images/
+snap/
+source/
+.config/1Password/
+.config/BraveSoftware/
+.config/arduino-ide/
+.config/Code/
+.config/Dharkael/
+.config/ReText project/
+.config/chromium/
+.config/code-server/
+.config/diagrammable/
+.config/dlv/
+.config/google-chrome/ .config/google-chrome-beta/ .config/google-chrome-unstable/
+.config/gtk-2.0/ .config/gtk-3.0/
+.config/ibus/
+.config/nautilus/
+.config/obsidian/
+.config/systemd/
+.config/yelp/
+.config/google-chrome/ .config/google-chrome-beta/ .config/google-chrome-unstable/
+.config/electron-vite-react/
+.config/autostart/
+.Xauthority
+.arduino15 .arduinoIDE
+.byobu
+.conky/
+.dotnet/
+.elm/
+.mozilla/
+.p10k.zsh
+.pki/
+.redhat/
+.sudo_as_admin_successful
+.vscode/argv.json .vscode/cli .vscode/extensions
+c
+diagrammable--display name-20230520111858.png diagrammable--display name-20230526193157.png

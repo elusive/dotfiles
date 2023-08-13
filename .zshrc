@@ -15,12 +15,13 @@ export ZSH="/home/jogi/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-POWERLEVEL10K_PROMPT_ON_NEWLINE=true
-ZSH_THEME="powerlevel10k/powerlevel10k" #agnoster  #cdimascio-lambda   #"powerlevel9k/powerlevel9k"
+#POWERLEVEL10K_PROMPT_ON_NEWLINE=true
+ZSH_THEME="robbyrussell" #cobalt2 #agnoster  #cdimascio-lambda   #"powerlevel9k/powerlevel9k"
 
 ## Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -50,18 +51,18 @@ if [ -e $HOME/.functions ]; then
     source $HOME/.functions
 fi
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# You may need to manually set your language environment
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# only use this for running docker in wsl/2-
+# export DOCKER_HOST=tcp://localhost:2375
 
-# Compilation flags
+LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
+
+
+
 # export ARCHFLAGS="-arch x86_64"
 
 # setup ssh agent
@@ -69,36 +70,15 @@ fi
 #ssh-add
 clear
 
-# setup go root and path
-export GOROOT=/usr/local/go
-export GOPATH=/home/jogi/learn/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
 # setup dotnet cli 
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$DOTNET_ROOT:$PATH
 
 # setup nvm
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
-#nvm use 10.16.2 
-
-# source ~/.autoenv/activate.sh
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export DISPLAY=localhost:0.0
-
-export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
-
-# due to previous installs/configuration for docker with WSL2 you must:
-unset DOCKER_HOST
-
-# setup docker host (allows use of docker in windows from wsl)
-export DOCKER_HOST=tcp://localhost:2375 
-
-
-export PATH=~/bin:$PATH
-
-# xserver for wsl2
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+NVM_DIR="/home/$USER/.nvm"
+nvm use v16.18.1
+ 
 export LIBGL_ALWAYS_INDIRECT=true
 # fix pager and less values
 export PAGER=""
@@ -108,3 +88,13 @@ export LESS="-F -X -R"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
+#    PATH Updates
+export PATH="$PATH:/home/$USER/.local/share/kitty.app/bin"
+
+source ~/.profile 
+
+
+# include Z, yo
+. ~/.local/bin/z/z.sh
+
+echo ".zshrc applied"
