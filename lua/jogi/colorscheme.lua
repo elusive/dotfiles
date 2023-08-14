@@ -19,7 +19,7 @@ vim.g.gruvbox_baby_transparent_mode = 1
 vim.cmd[[colorscheme kanagawa]]
 --vim.cmd[[colorscheme minimal]]
 
--- vim.cmd [[
+--vim.cmd [[
 --try
 --  colorscheme gruvbox-baby
 --  colorscheme codeschool

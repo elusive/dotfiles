@@ -53,7 +53,7 @@ return packer.startup(function(use)
     use {
       'kyazdani42/nvim-tree.lua',
       requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        'nvim-tree/nvim-web-devicons', -- optional, for file icons
       }
     }
     use "akinsho/bufferline.nvim"
@@ -65,7 +65,6 @@ return packer.startup(function(use)
 
     -- color schemes
     use {"adisen99/codeschool.nvim", requires = {"rktjmp/lush.nvim"}}
-    use "folke/tokyonight.nvim"
     use "shaunsingh/nord.nvim"
     use "luisiacc/gruvbox-baby"
     use "Yazeed1s/minimal.nvim"
@@ -80,6 +79,8 @@ return packer.startup(function(use)
     use "saadparwaiz1/cmp_luasnip"  -- snippet completions
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-nvim-lua"
+    use "ray-x/lsp_signature.nvim"
+    vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
     -- snippets
     use "L3MON4D3/LuaSnip"          --snippet engine
