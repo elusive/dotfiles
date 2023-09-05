@@ -46,6 +46,8 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
 cmp.setup {
   snippet = {
     expand = function(args)

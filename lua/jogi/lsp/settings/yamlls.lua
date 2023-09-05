@@ -7,6 +7,9 @@ return {
                 ["https://json.schemastore.org/bamboo-spec.json"] = "/**/bamboo.yml",
                 ["https://json.schemastore.org/bamboo-spec.json"] = "/**/bamboo.yaml",
             },
+            schemaStore = {
+              enable = true
+            },
         },
     }
 }

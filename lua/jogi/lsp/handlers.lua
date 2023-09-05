@@ -1,16 +1,48 @@
 local M = {}
 
 function M.setup()
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
 
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
+        
+    ---
+    -- LSP config
+    ---
+    -- See :help lspconfig-global-defaults
+    local status_ok, lspconfig = pcall(require, "lspconfig")
+    if not status_ok then
+        return
+    end
+
+    local lsp_defaults = {
+      flags = {
+        debounce_text_changes = 149,
+      }
+    }
+    
+    lspconfig.util.default_config = vim.tbl_deep_extend(
+      'force',
+      lspconfig.util.default_config,
+      lsp_defaults
+    )
+
+
+
+    ---
+    -- Diagnostic customization
+    ---
+    local sign = function(opts)
+      -- See :help sign_define()
+      vim.fn.sign_define(opts.name, {
+        texthl = opts.name,
+        text = opts.text,
+        numhl = ''
+      })
+    end
+
+    sign({name = 'DiagnosticSignError', text = '✘'})
+    sign({name = 'DiagnosticSignWarn', text = '▲'})
+    sign({name = 'DiagnosticSignHint', text = '⚑'})
+    sign({name = 'DiagnosticSignInfo', text = ''})
+
 
   local config = {
     -- disable virtual text
@@ -52,6 +84,8 @@ function M.setup()
   })
 end
 
+
+
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_highlight then
@@ -68,6 +102,9 @@ local function lsp_highlight_document(client)
   end
 end
 
+---
+-- LSP Keybindings
+---
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -75,32 +112,75 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "x", "<F4>", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(
-    bufnr,
-    "n",
-    "gl",
-    '<cmd>lua vim.lsp.diagnostic.open_float({ border = "rounded" })<CR>',
-    opts
-  )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  --vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n","gl",'<cmd>lua vim.lsp.diagnostic.open_float({ border = "rounded" })<CR>', opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
-M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
-    client.server_capabilities.document_formatting = false
-  end
-  lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
 
+
+
+---
+-- LSP servers
+---
+local default_handler = function(server)
+  -- See :help lspconfig-setup
+  lspconfig[server].setup({})
+end
+
+
+
+M.on_attach = function(client, bufnr)
+    if client.name == "tsserver" then
+      client.server_capabilities.document_formatting = false
+    end
+    lsp_keymaps(bufnr)
+    lsp_highlight_document(client)
+    
+    if client.name == "tsserver" then
+        require("lsp-inlayhints").on_attach(client, bufnr)
+    end
+    
     local capabilities = vim.lsp.protocol.make_client_capabilities()
+    M.capabilities.textDocument.completion.completionItem.snippetSupport = true
     M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 end
+
+function M.enable_format_on_save()
+  vim.cmd [[
+    augroup format_on_save
+      autocmd! 
+      autocmd BufWritePre * lua vim.lsp.buf.format({ async = false }) 
+    augroup end
+  ]]
+  vim.notify "Enabled format on save"
+end
+
+function M.disable_format_on_save()
+  M.remove_augroup "format_on_save"
+  vim.notify "Disabled format on save"
+end
+
+function M.toggle_format_on_save()
+  if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
+    M.enable_format_on_save()
+  else
+    M.disable_format_on_save()
+  end
+end
+
+function M.remove_augroup(name)
+  if vim.fn.exists("#" .. name) == 1 then
+    vim.cmd("au! " .. name)
+  end
+end
+
+vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]]
 
 return M

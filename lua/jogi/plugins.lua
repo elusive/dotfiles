@@ -50,12 +50,22 @@ return packer.startup(function(use)
     use "nvim-lua/plenary.nvim"     -- Useful lua functions used ny lots of plugins
     use "windwp/nvim-autopairs"     -- Autopairs, integrates with both cmp and treesitter
     use "numToStr/Comment.nvim"     -- Easily comment stuff
+--    use {
+--      'kyazdani42/nvim-tree.lua',
+--      requires = {
+--        'nvim-tree/nvim-web-devicons', -- optional, for file icons
+--      }
+--    }
     use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {
-        'nvim-tree/nvim-web-devicons', -- optional, for file icons
+       "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        requires = { 
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+          "MunifTanjim/nui.nvim",
+        }
       }
-    }
+
     use "akinsho/bufferline.nvim"
     use "moll/vim-bbye"
     use { 
@@ -66,7 +76,7 @@ return packer.startup(function(use)
     -- color schemes
     use {"adisen99/codeschool.nvim", requires = {"rktjmp/lush.nvim"}}
     use "shaunsingh/nord.nvim"
-    use "luisiacc/gruvbox-baby"
+    use "ellisonleao/gruvbox.nvim" 
     use "Yazeed1s/minimal.nvim"
     use "daschw/leaf.nvim"
     use "rebelot/kanagawa.nvim"     -- wave
@@ -80,17 +90,19 @@ return packer.startup(function(use)
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-nvim-lua"
     use "ray-x/lsp_signature.nvim"
-    vim.opt.completeopt = { "menu", "menuone", "noselect" }
+    use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+    use "lvimuser/lsp-inlayhints.nvim"
 
     -- snippets
     use "L3MON4D3/LuaSnip"          --snippet engine
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
     -- LSP
-    use "neovim/nvim-lspconfig"     -- enable LSP
-    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-    
-
+   use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
     -- Telescope
     use "nvim-telescope/telescope.nvim"
     use 'nvim-telescope/telescope-media-files.nvim'
@@ -101,7 +113,6 @@ return packer.startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
     }
---    use "JoosepAlviste/nvim-ts-context"
    
 
     -- Illuminate (hilites matches to cursor word)
@@ -119,13 +130,24 @@ return packer.startup(function(use)
 
     -- Debugging
 --     use { "puremourning/vimspector" }
-    use "mfussenegger/nvim-dap"
     use "alpha2phi/DAPInstall.nvim"
+    use "mfussenegger/nvim-dap"
+    use "leoluz/nvim-dap-go"
     use "theHamsta/nvim-dap-virtual-text"
     use "rcarriga/nvim-dap-ui"
     use "mfussenegger/nvim-dap-python"
     use "nvim-telescope/telescope-dap.nvim"
-    use "leoluz/nvim-dap-go"
+    use { "jbyuki/one-small-step-for-vimkind", module = "osv" }
+   
+    -- typescript
+    use "mxsdev/nvim-dap-vscode-js"
+    --    requires = { 
+    --        "microsoft/vscode-js-debug", 
+    --        opt = true, 
+    --        run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+    --    },
+    --    module={"dap-vscode-js"}
+    --}
 
     --rust
     use {
@@ -134,9 +156,6 @@ return packer.startup(function(use)
       opt = true,
       module = "rust-tools",
       ft = { "rust" },
-      config = function()
-        require("jogi.rusttool").setup()
-      end,
     }
     use {
       "saecki/crates.nvim",
@@ -156,14 +175,6 @@ return packer.startup(function(use)
 
     -- Surround
     use { "tpope/vim-surround", event = "BufReadPre" }
-    use {
-      "Matt-A-Bennett/vim-surround-funk",
-      event = "BufReadPre",
-      config = function()
-        require("jogi.surroundfunk").setup()
-      end,
-      disable = true,
-    }
 
 
     -- Markdown
@@ -176,6 +187,9 @@ return packer.startup(function(use)
       cmd = { "MarkdownPreview" },
     }
 
+
+    -- Terminal
+    use "akinsho/toggleterm.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

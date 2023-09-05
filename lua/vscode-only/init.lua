@@ -6,4 +6,6 @@ require "jogi/colorscheme"
 
 
 -- vs code only files
-require "vs-plugins"
+require "vscode-only/vs-plugins"
+
+print "vscode-only lua loaded"

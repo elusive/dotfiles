@@ -1,3 +1,8 @@
+local status_ok, dap = pcall(require, "dap")
+if not status_ok then
+    print("The dap extension could not be loaded")
+    return
+end
 
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
@@ -12,7 +17,7 @@ keymap("n", "<leader>db", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.inp
 keymap("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", opts)
 keymap("n", "<leader>dt", ":lua require'dap-go'.debug_test()<CR>", opts)
 
-
+keymap("v", "<F3>", ":lua require'dapui'.eval()<CR>", opts)
 
 -- language debuggers
 require('jogi.dap.go').setup()
@@ -24,14 +29,14 @@ require('jogi.dap.typescript').setup()
 
 -- dap ui 
 require("nvim-dap-virtual-text").setup()
---require("dapui").setup()
---local dap, dapui = require("dap"), require("dapui")
---dap.listeners.after.event_initialized["dapui_config"] = function()
---  dapui.open()
---end
---dap.listeners.before.event_terminated["dapui_config"] = function()
---  dapui.close()
---end
---dap.listeners.before.event_exited["dapui_config"] = function()
---  dapui.close()
---end
+require("dapui").setup()
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
