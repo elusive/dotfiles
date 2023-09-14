@@ -2,7 +2,7 @@
 
 - Prior to the installation commit the alias to your .bashrc or .zshrc:
 ```
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$Halias coOME'
 ```
 
 - And setup the git ignore for the repository folder:
