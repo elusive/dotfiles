@@ -90,4 +90,4 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 -- MISC
 
 -- toggle highlighting from search
-keymap("n", "<F3>", ":set hlsearch!", opts)
+keymap("n", "<C-h>", ":set hlsearch!", opts)

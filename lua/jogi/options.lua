@@ -36,18 +36,5 @@ vim.opt.guifont = "monospace:h17"               -- the font used in graphical ne
 vim.opt.buftype = ""                
 vim.opt.shortmess:append "c"
 
-vim.g.clipboard = {
-  name = "win32yank-wsl",
-  copy = {
-    ["+"] = "win32yank.exe -i --crlf",
-    ["*"] = "win32yank.exe -i --crlf"
-  },
-  paste = {
-    ["+"] = "win32yank.exe -o --crlf",
-    ["*"] = "win32yank.exe -o --crlf"
-  },
-  cache_enable = 0,
-}
-
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
