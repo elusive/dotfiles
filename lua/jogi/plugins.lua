@@ -73,6 +73,9 @@ return packer.startup(function(use)
         requires = { "kyazdani42/nvim-web-devicons", opt = true }
     }
 
+    -- copilot
+    use "github/copilot.vim"
+
     -- color schemes
     use {"adisen99/codeschool.nvim", requires = {"rktjmp/lush.nvim"}}
     use "shaunsingh/nord.nvim"
