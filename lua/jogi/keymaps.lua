@@ -26,7 +26,7 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- NeoTree
-keymap("n", "<leader>e", ":Neotree toggle filesystem right<cr>", opts)
+keymap("n", "<leader>e", ":Neotree toggle<cr>", opts)
 
 -- ToggleTerm
 keymap("n", "<leader>t", ":ToggleTerm size=80 direction=vertical<cr>", opts)
