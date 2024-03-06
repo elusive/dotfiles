@@ -25,7 +25,7 @@ M.server_capabilities = function()
   end)
 end
 
-require "jogi.lsp.lsp-signature"
+--require "jogi.lsp.lsp-signature"
 -- require "user.lsp.lsp-installer"
 require("jogi.lsp.mason")
 require("jogi.lsp.handlers").setup()

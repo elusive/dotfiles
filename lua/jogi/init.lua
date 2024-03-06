@@ -6,5 +6,6 @@ require "jogi.lsp"
 require "jogi.dap"
 require "jogi.snip"
 require "jogi.neotree"
+require "jogi.misc"
 
 --require "jogi.vimspector"

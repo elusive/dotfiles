@@ -50,6 +50,10 @@ return packer.startup(function(use)
     use "nvim-lua/plenary.nvim"     -- Useful lua functions used ny lots of plugins
     use "windwp/nvim-autopairs"     -- Autopairs, integrates with both cmp and treesitter
     use "numToStr/Comment.nvim"     -- Easily comment stuff
+    use "rcarriga/nvim-notify"
+    use "folke/zen-mode.nvim"
+    use "folke/twilight.nvim"
+
 --    use {
 --      'kyazdani42/nvim-tree.lua',
 --      requires = {
@@ -59,16 +63,36 @@ return packer.startup(function(use)
     use {
        "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
-        requires = { 
+        requires = {
           "nvim-lua/plenary.nvim",
           "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
           "MunifTanjim/nui.nvim",
         }
       }
 
+    use {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
+    }
+
+--  obsidian integration
+    use({
+      "epwalsh/obsidian.nvim",
+      tag = "*",  -- recommended, use latest release instead of latest commit
+      requires = {
+        -- Required.
+        "nvim-lua/plenary.nvim",
+
+        -- see below for full list of optional dependencies 👇
+      },
+    })
+
     use "akinsho/bufferline.nvim"
     use "moll/vim-bbye"
-    use { 
+    use {
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true }
     }
@@ -77,12 +101,11 @@ return packer.startup(function(use)
     use "github/copilot.vim"
 
     -- color schemes
-    use {"adisen99/codeschool.nvim", requires = {"rktjmp/lush.nvim"}}
-    use "shaunsingh/nord.nvim"
-    use "ellisonleao/gruvbox.nvim" 
+    use "ellisonleao/gruvbox.nvim"
     use "Yazeed1s/minimal.nvim"
     use "daschw/leaf.nvim"
     use "rebelot/kanagawa.nvim"     -- wave
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp"          -- The completion plugin
@@ -116,20 +139,13 @@ return packer.startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
     }
-   
 
     -- Illuminate (hilites matches to cursor word)
     use "RRethy/vim-illuminate"
 
     -- Git
     use "lewis6991/gitsigns.nvim"
-    use {
-      "TimUntersberger/neogit",
-      cmd = "Neogit",
-      config = function()
-        require("jogi.neogit").setup()
-      end,
-    }
+    use "tpope/vim-fugitive"
 
     -- Debugging
 --     use { "puremourning/vimspector" }
@@ -175,6 +191,13 @@ return packer.startup(function(use)
       end,
     }
 
+    -- live-server 
+    use {
+        "barrett-ruth/live-server.nvim",
+        run = "pnpm add -g live-server",
+        cmd = { "LiveServerStart", "LiveServerStop" },
+        config = true
+    }
 
     -- Surround
     use { "tpope/vim-surround", event = "BufReadPre" }

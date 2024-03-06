@@ -25,11 +25,27 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+keymap("n", "<leader>oo", ":ObsidianOpen<cr>", opts)
+keymap("n", "<leader>on", ":ObsidianNew<cr>", opts)
+keymap("n", "<leader>ot", ":ObsidianToday<cr>", opts)
+keymap("n", "<leader>od", ":ObsidianDailies -3<cr>", opts)
+keymap("n", "<leader>os", ":ObsidianQuickSwitch<cr>", opts)
+keymap("n", "<leader>oy", ":ObsidianYesterday<cr>", opts)
+keymap("n", "<leader>oot", ":ObsidianTemplate journal<cr>", opts)
+
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 -- NeoTree
 keymap("n", "<leader>e", ":Neotree toggle filesystem right<cr>", opts)
 
 -- ToggleTerm
 keymap("n", "<leader>t", ":ToggleTerm size=80 direction=vertical<cr>", opts)
+
+-- twilight
+vim.api.nvim_set_keymap("n", "tw", ":Twilight<enter>", {noremap=false})
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
