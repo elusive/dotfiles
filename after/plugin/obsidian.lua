@@ -5,13 +5,15 @@ require("obsidian").setup({
       path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes/",
     },
   },
-  -- Optional, for templates (see below).
-  templates = {
-    subdir = "_resources/templates",
-    date_format = "%Y-%m-%d",
-    time_format = "%H:%M",
+  daily_notes = {
+        folder = "daily",
+        date_format = "%Y-%m-%d",
   },
-
+templates = {
+        subdir = "_resources/templates",
+        date_format = "%Y-%m-%d",
+        time_format = "%H:%M",
+    },
   completion = {
     nvim_cmp = true,
     min_chars = 2,

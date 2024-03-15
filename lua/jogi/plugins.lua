@@ -93,6 +93,7 @@ return packer.startup(function(use)
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true }
     }
+    use "junegunn/fzf.vim"
 
     -- copilot
     use "github/copilot.vim"
