@@ -17,6 +17,7 @@ telescope.setup {
     file_ignore_patterns = {
         "node_modules",
         "dist",
+        "apps/webtv-e2e",
     },
 
     mappings = {

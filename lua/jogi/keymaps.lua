@@ -35,7 +35,7 @@ keymap("n", "<leader>oot", ":ObsidianTemplate journal<cr>", opts)
 keymap("n", "<leader>md", ":MarkdownPreview<cr>", opts)
 
 -- fzf filesystem
-keymap("n", "<c-p>", ":Files<cr>", opts)
+keymap("n", "<c-p>", "lua require('fzf-lua').files()<cr>", opts)
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -108,5 +108,3 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- MISC
 
--- toggle highlighting from search
-keymap("n", "<C-h>", ":set hlsearch!", opts)
