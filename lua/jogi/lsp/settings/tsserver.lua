@@ -1,4 +1,5 @@
 return {
+    onattach = onattach,
   settings = {
     typescript = {
       inlayHints = {

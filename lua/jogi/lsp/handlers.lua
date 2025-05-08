@@ -163,9 +163,9 @@ M.on_attach = function(client, bufnr)
         require("lsp-inlayhints").on_attach(client, bufnr)
     end
     
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-    M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+  --  local capabilities = vim.lsp.protocol.make_client_capabilities()
+ --   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  --  M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 end
 
 function M.enable_format_on_save()

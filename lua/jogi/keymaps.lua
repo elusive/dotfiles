@@ -66,7 +66,7 @@ keymap("n", "<leader>q", ":bp<CR>:bd #<CR>", opts)
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "ii", "<ESC>", opts)
-keymap("i", "kj", "<ESC>", opts)
+keymap("i", "nn", "<ESC>", opts)
 keymap("v", "kj", "<ESC>", opts)
 
 -- Visual --
