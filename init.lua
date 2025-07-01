@@ -7,7 +7,3 @@ else
     -- ordinary Neovim
     require "jogi"
 end
-
-
-
-
