@@ -1,0 +1,150 @@
+theme = "kanagawa-dragon"
+
+[editor]
+mouse = true
+auto-pairs = false
+auto-save = true
+rulers = [80, 120]
+cursorline = true
+cursorcolumn = false
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+# https://docs.helix-editor.com/master/configuration.html#editorsoft-wrap-section
+[editor.soft-wrap]
+enable = true
+# wrap-at-text-width = true
+wrap-indicator = "↩ "
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "┆"
+skip-levels = 1
+
+[editor.whitespace.characters]
+space = " "
+nbsp = "⍽"    # Non Breaking SPace
+tab = "→"
+newline = "⏎"
+tabpad = "·"  # Tabs will look like "→···" (depending on tab width)
+### 
+
+[editor.statusline]
+left = [ "mode", "spinner", "diagnostics" ]
+center = [ "file-name", "separator", "version-control", "separator", "file-type" ]
+right = [ "position", "position-percentage", "total-line-numbers" ]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[keys.normal]
+#C-o = ":open ~/.config/helix/config.toml" # Maps Ctrl-o to opening of the helix config file
+#C-r = ":config-reload"
+
+# navigate through edit history 
+C-t = ":earlier"
+
+
+# https://github.com/helix-editor/helix/discussions/7898
+space.c = "toggle_comments"
+
+# YAZI integration
+space.e = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
+
+# Use system clipboard
+p = "paste_clipboard_before"
+
+space."." = "file_picker_in_current_buffer_directory"
+space.q = ":buffer-close"
+
+h="move_char_left"
+n="move_line_down"
+e="move_line_up"
+i="move_char_right"
+
+k="insert_mode"
+K="insert_at_line_start"
+
+f="search_next"
+r="search_prev"
+
+A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+
+x = "delete_selection"
+
+[keys.normal.d]
+d = ["extend_to_line_bounds", "yank_main_selection_to_clipboard", "delete_selection"]
+
+[keys.normal.y]
+y = ["extend_to_line_bounds", "yank_main_selection_to_clipboard", "normal_mode", "collapse_selection"]
+
+[keys.normal.g]
+h="goto_line_start"
+i="goto_line_end"
+
+g=[":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+[keys.normal.space.w]
+h="jump_view_left"
+n="jump_view_down"
+e="jump_view_up"
+i="jump_view_right"
+
+[keys.insert]
+"A-;" = "normal_mode" # Maps Alt-; to enter normal mode
+
+[keys.select]
+h="move_char_left"
+n="move_line_down"
+e="move_line_up"
+i="move_char_right"
+
+k="insert_mode"
+K="insert_at_line_start"
+
+l="open_below"
+L="open_above"
+
+m="move_next_word_end"
+M="move_next_long_word_end"
+
+j="search_next"
+J="search_prev"
+
+E="join_selections"
+"A-E"="join_selections_space"
+
+I="keep_selections"
+"C-I"="remove_selections"
+
+"{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
+"}" = ["extend_to_line_bounds", "goto_next_paragraph"]
+G = "goto_file_end"
+
+
+[keys.normal.z]
+n="scroll_down"
+e="scroll_up" 
+
+
+[keys.normal.";"]
+#r = ":sh run.sh %val{filename} > /tmp/run.log 2>&1"
+

@@ -1,0 +1,22 @@
+[user]
+	email = john.gilliland@starz.com
+	name = John Gilliland
+[init]
+	defaultBranch = main
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential "https://git.starz.com"]
+	provider = bitbucket
+[core]
+    excludesfile = /Users/john.gilliland/.gitignore_global
+    pager = "delta"
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    side-by-side = true
+
+[diff]
+    colorMoved = default

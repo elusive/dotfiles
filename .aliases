@@ -1,0 +1,89 @@
+# Example aliases
+alias vim='nvim'
+alias vz='nvim ~/.zshrc'
+alias sz='source ~/.zshrc'
+alias vb="nvim ~/.bashrc"
+alias sb="source ~/.bashrc"
+
+if ls --color -d . &> /dev/null
+then
+  alias ls="ls --color=auto"
+elif ls -G -d . &> /dev/null
+then
+  alias ls='ls -G'        # Compact view, show colors
+fi
+
+# List directory contents  USING EZA INSTEAD OF LS
+#alias ls='command ls -l --color=auto'
+#alias sl=ls
+#alias la='ls -AF'       # Compact view, show hidden
+#alias ll='ls -al'
+# general use
+alias ls='eza'                                                          # ls
+alias l='eza -lbF --git'                                                # list, size, type, git
+alias ll='ls -al'                                                      # long list
+alias llm='eza -lbGd --git --sort=modified'                            # long list, modified date sort
+alias la='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+
+# specialty views
+alias lS='eza -1'                                                              # one column, just names
+alias lt='eza --tree --level=2'                                         # tree#alias l='ls -a'
+
+alias _="sudo"
+
+alias lf='lfrun'
+
+alias opentcp="netstat -anvp tcp | awk 'NR<3 || /LISTEN/'"
+
+alias grep='grep --color=auto'
+export GREP_COLOR='1;33'
+
+alias ..='cd ..'         # Go up one directory
+alias cd..='cd ..'       # Common misspelling for going up one directory
+alias ...='cd ../..'     # Go up two directories
+alias ....='cd ../../..' # Go up three directories
+alias -- -='cd -'        # Go back
+
+alias md='mkdir -p'
+alias rd='rmdir'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+alias dc="docker-compose"
+
+alias clc='clear'
+alias clr='clear'
+alias cls='clear'
+
+# Git Aliases
+alias g='git'
+alias gs='g status'
+alias ga='g add .'
+alias gac='g commit -am'
+alias gc='g cz'
+alias gco='g checkout'
+alias gl="g log --graph --oneline"
+alias ignore-local="g update-index --assume-unchanged"
+alias unignore-local="g update-index --no-assume-unchanged"
+
+alias wbtv='SKIP_ES5_BUILD=true npm run starz -- --live-reload=false'
+alias wbtves5='npm run starz -- --live-reload=false'
+alias ngrk='ngrok http --domain=john.ngrok.pro --host-header=rewrite 4200'
+alias ngrkcc='ngrok http --domain=john.ngrok.pro --host-header=rewrite 8080'
+alias ngrksb='ngrok http --domain=john.ngrok.pro --host-header=rewrite 6006'
+alias webtv-cli='node ~/source/repos/git.starz.com/webtv-cli/index.js'
+
+alias sess='sesh connect $(sesh list | fzf)'
+
+alias lg='lazygit'
+alias myip='ifconfig | grep "inet " | grep -v "127." | grep "192."'
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
