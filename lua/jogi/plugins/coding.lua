@@ -14,12 +14,12 @@ return {
                 markdown = { "deno_fmt", "cbfmt" },
                 html = { "prettier" },
                 css = { "prettier" },
+                scss = { "prettier" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
             },
             format_on_save = {
                 timeout_ms = 500,
-                lsp_format = "fallback",
             },
         },
     },

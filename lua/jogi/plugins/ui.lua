@@ -32,19 +32,6 @@ return {
 				end,
 			})
 
-			table.insert(opts.routes, 1, {
-				filter = {
-					["not"] = {
-						event = "lsp",
-						kind = "progress",
-					},
-					cond = function()
-						return not focused and false
-					end,
-				},
-				view = "notify_send",
-				opts = { stop = false, replace = true },
-			})
 
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "markdown",
