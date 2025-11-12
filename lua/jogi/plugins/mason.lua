@@ -15,6 +15,7 @@ local PACKAGES = {
 	"lua-language-server",
 	"pyright",
 	"rust-analyzer",
+	"tailwindcss-language-server",
 	"typescript-language-server",
 	"vtsls",
 	"yaml-language-server",
@@ -29,32 +30,6 @@ local PACKAGES = {
 	"pylint",
 }
 
-local function install(pack, version)
-	local notifyOpts = { title = "Mason", icon = "", id = "mason.install" }
-
-	local msg = version and ("[%s] updating to %s…"):format(pack.name, version)
-		or ("[%s] installing…"):format(pack.name)
-	vim.defer_fn(function()
-		vim.notify(msg, nil, notifyOpts)
-	end, 0)
-
-	pack:once("install:success", function()
-		local msg2 = ("[%s] %s"):format(pack.name, version and "updated." or "installed.")
-		notifyOpts.icon = " "
-		vim.defer_fn(function()
-			vim.notify(msg2, nil, notifyOpts)
-		end, 0)
-	end)
-
-	pack:once("install:failed", function()
-		local error = "Failed to install [" .. pack.name .. "]"
-		vim.defer_fn(function()
-			vim.notify(error, vim.log.levels.ERROR, notifyOpts)
-		end, 0)
-	end)
-
-	pack:install({ version = version })
-end
 return {
 	"mason-org/mason.nvim",
 	init = function()
@@ -70,15 +45,15 @@ return {
 			width = 0.8,
 		},
 	},
-	config = function(_, opts)
-		require("mason").setup(opts)
-
-		-- Filter out disabled packages
-		local packages = {}
-		for _, package in ipairs(PACKAGES) do
-			table.insert(packages, package)
-		end
-	end,
+	--	config = function(_, opts)
+	--		require("mason").setup(opts)
+	--
+	-- Filter out disabled packages
+	--		local packages = {}
+	--		for _, package in ipairs(PACKAGES) do
+	-- 			table.insert(packages, package)
+	--		end
+	--	end,
 
 	event = { "VeryLazy" },
 	enabled = not vim.g.vscode,

@@ -20,7 +20,7 @@ return {
 		words = { enabled = true },
 		styles = {
 			notification = {
-				-- wo = { wrap = true } -- Wrap notifications
+				wo = { wrap = true }, -- Wrap notifications
 			},
 		},
 	},
@@ -67,14 +67,6 @@ return {
 				Snacks.explorer()
 			end,
 			desc = "File Explorer",
-		},
-		-- find
-		{
-			"<leader>fb",
-			function()
-				Snacks.picker.buffers()
-			end,
-			desc = "Buffers",
 		},
 		{
 			"<leader>fc",

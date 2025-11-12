@@ -38,8 +38,8 @@ keymap("n", "<leader>md", ":MarkdownPreview<cr>", opts)
 keymap("n", "<c-p>", "lua require('fzf-lua').files()<cr>", opts)
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- twilight
 vim.api.nvim_set_keymap("n", "tw", ":Twilight<enter>", { noremap = false })
@@ -60,8 +60,9 @@ keymap("n", "<leader>q", ":bp<CR>:bd #<CR>", opts)
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "ii", "<ESC>", opts)
-keymap("i", "nn", "<ESC>", opts)
-keymap("v", "kj", "<ESC>", opts)
+keymap("i", "jj", "<ESC>", opts)
+keymap("i", ",m", "<ESC>", opts)
+keymap("i", "<ESC>", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -87,7 +88,6 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
-
 -- Telescope
 -- Better searching
 --keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
@@ -98,13 +98,5 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 --keymap("n", "<leader>gs", "<cmd>lua require'telescope.builtin'.grep_string()<cr>", opts)
 --keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
-
-
--- MISC
-
--- Options through Telescope
-vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua require('telescope.builtin').commands()<CR>", { noremap = false })
-
-
 -- Noice
-vim.api.nvim_set_keymap("n", "<leader>nn", ":NoiceDismiss<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>nn", ":NoiceDismiss<CR>", opts)

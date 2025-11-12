@@ -16,12 +16,6 @@ return {
 		"vue",
 		"svelte",
 	},
-	init_options = {
-		userLanguages = {
-			eelixir = "html-eex",
-			eruby = "erb",
-		},
-	},
 	on_new_config = function(new_config)
 		if not new_config.settings then
 			new_config.settings = {}
@@ -39,9 +33,6 @@ return {
 		"tailwind.config.ts",
 		"postcss.config.js",
 		"postcss.config.ts",
-		"package.json",
-		"node_modules",
-		".git",
 	},
 	settings = {
 		tailwindCSS = {

@@ -2,7 +2,6 @@
 
 local augroup = vim.api.nvim_create_augroup("jogi/autocmds", { clear = true })
 
-
 -- Configure diagnostics
 local function diagnostics()
 	vim.diagnostic.config({
@@ -16,11 +15,11 @@ local function diagnostics()
 		severity_sort = true,
 		signs = {
 			text = {
-				[vim.diagnostic.severity.ERROR] = '✘',
-				[vim.diagnostic.severity.WARN] = '▲',
-				[vim.diagnostic.severity.INFO] = '',
-				[vim.diagnostic.severity.HINT] = '⚑',
-				[vim.diagnostic.severity.N] = '⚑',
+				[vim.diagnostic.severity.ERROR] = "✘",
+				[vim.diagnostic.severity.WARN] = "▲",
+				[vim.diagnostic.severity.INFO] = "",
+				[vim.diagnostic.severity.HINT] = "⚑",
+				[vim.diagnostic.severity.N] = "⚑",
 			},
 			numhl = {
 				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
@@ -54,23 +53,15 @@ local function set_keymaps_diagnostics(k)
 	k("[x", jump_to_prev, "Previous diagnostic")
 	k("]x", jump_to_next, "Next diagnostic")
 
-    local wk = require("which-key")
-        wk.add({
-            { "<leader>la", vim.lsp.buf.code_action,                           desc = "Code Action" },
-            { "<leader>lA", vim.lsp.buf.range_code_action,                     desc = "Range Code Actions" },
-            { "<leader>ls", vim.lsp.buf.signature_help,                        desc = "Display Signature Information" },
-            { "<leader>lr", vim.lsp.buf.rename,                                desc = "Rename all references" },
-            { "<leader>lf", vim.lsp.buf.format,                                desc = "Format" },
-            { "<leader>Wa", vim.lsp.buf.add_workspace_folder,                  desc = "Workspace Add Folder" },
-            { "<leader>Wr", vim.lsp.buf.remove_workspace_folder,               desc = "Workspace Remove Folder" },
-            {
-                "<leader>Wl",
-                function()
-                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                end,
-                desc = "Workspace List Folders",
-            },
-        })
+	local wk = require("which-key")
+	wk.add({
+		{ "<leader>la", vim.lsp.buf.code_action, desc = "Code Action" },
+		{ "<leader>lA", vim.lsp.buf.range_code_action, desc = "Range Code Actions" },
+		{ "<leader>ls", vim.lsp.buf.signature_help, desc = "Display Signature Information" },
+		{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename all references" },
+		{ "<leader>lf", vim.lsp.buf.format, desc = "Format" },
+		{ "<leader>Wa", vim.lsp.buf.add_workspace_folder, desc = "Workspace Add Folder" },
+	})
 end
 
 -- Set keymaps for LSP
