@@ -5,8 +5,15 @@ return {
     { "lvimuser/lsp-inlayhints.nvim" },
     { "L3MON4D3/LuaSnip" },             --snippet engine
     { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
-    { "RRethy/vim-illuminate" },        -- Illuminate (hilites matches to cursor word)
-
+    { "RRethy/vim-illuminate" },        -- Illuminate (hilites matches to cursor word){
+    { 
+        "iamcco/markdown-preview.nvim",
+        config = function()
+                vim.fn["mkdp#util#install"]()
+            end,
+        ft = "markdown",
+        cmd = "MarkdownPreview",
+    },
     { "nvim-treesitter/playground",  cmd = "TSPlaygroundToggle" },
     {
         "mfussenegger/nvim-lint",
