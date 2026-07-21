@@ -1,0 +1,6 @@
+alias g="git"
+alias cls="clear"
+alias lg="lazygit"
+
+# login for dcxdev swiftcloud account
+alias ssodcxdev="aws sso login --profile dcxdev --mode gui"

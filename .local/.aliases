@@ -1,0 +1,10 @@
+alias g="git"
+alias cls="clear"
+alias lg="lazygit"
+alias sb="source ~/.bashrc"
+alias eb="hx ~/.bashrc"
+alias ex="explorer.exe"
+
+
+# login for dcxdev swiftcloud account
+alias ssodcxdev="aws-azure-login --profile dcxdev --mode gui"

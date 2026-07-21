@@ -1,0 +1,119 @@
+[language-server]
+deno = { command = "deno", args = [ "lsp" ]}
+emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+#codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+format = { enable = true }
+nodePath = ""
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+experimental = {}
+problems = { shortenToSingleLine = false }
+
+[language-server.eslint.config.codeAction]
+disableRuleComment = { enable = true, location = "separateLine" }
+showDocumentation = { enable = false }
+
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true }, format = { enable = false } }
+less = { validate = { enable = true } }
+provideFormatter = true
+
+[language-server.pylsp.config.pylsp]
+plugins.ruff.enabled = true
+plugins.black.enabled = true
+plugins.pylsp_mypy.enabled = true
+plugins.pylsp_mypy.live_mode = true
+
+#
+# Languages
+#
+[[language]]
+name = "markdown"
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
+auto-format = true
+soft-wrap = { enable = false }
+
+[[language]]
+name = "svelte"
+indent = { tab-width = 4, unit = "    " }
+auto-format = false
+language-servers = [ { name = "tailwindcss-ls", except-features = ["hover"] }, "svelteserver", "emmet-ls", "eslint-ls" ]
+formatter = { command = "prettier", args = ["--parser", "html"]}
+
+[[language]]
+name = "typescript"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "typescript-language-server", "eslint" ]
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
+auto-format = false
+
+[[language]]
+name = "tsx"
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
+auto-format = false
+
+[[language]]
+name = "javascript"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "typescript-language-server", "eslint" ]
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
+auto-format = false
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
+auto-format = false
+
+[[language]]
+name = "json"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "vscode-json-language-server", "eslint" ]
+formatter = { command = "prettier", args = [ "--parser", "json" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "json" ] }
+auto-format = true
+
+[[language]]
+name = "html"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "vscode-html-language-server", "emmet-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = false
+
+[[language]]
+name = "css"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "vscode-css-language-server" ]
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+auto-format = false
+
+[[language]]
+name = "scss"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "vscode-css-language-server" ]
+formatter = { command = 'prettier', args = ["--parser", "scss"] }
+auto-format = false
+
+[[language]]
+name = "python"
+language-servers = [ "pylsp" ]
+formatter = { command = "black", args = ["--quiet", "-"] }
+auto-format = true

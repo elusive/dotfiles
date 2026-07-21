@@ -1,0 +1,73 @@
+theme = "kanagawa-dragon"
+
+[editor]
+shell = ["C:/Program Files/Git/bin/bash.exe", "-c"]
+mouse = false
+auto-pairs = false 
+auto-save = true 
+rulers = [80, 120]
+cursorline = true 
+cursorcolumn = true 
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true 
+wrap-at-text-width = true
+wrap-indicator = "↩ "
+
+[editor.file-picker]
+hidden = false 
+
+[editor.indent-guides]
+render = true 
+character = "┆"
+skip-levels = 1
+
+[editor.whitespace.characters]
+space = " "
+nbsp = "␣"
+tab = "⇥"
+newline = "⏎"
+tabpad = "·"
+
+[editor.statusline]
+left = [ "mode", "spinner", "version-control" ]
+center = [ "file-base-name", "file-modification-indicator" ]
+right = [ "diagnostics", "position", "file-type", "total-line-numbers" ]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
+auto-signature-help = true
+display-signature-help-docs = true 
+display-color-swatches = true 
+
+
+
+[keys.normal]
+space.c = "toggle_comments"
+space.q = ":buffer-close"
+space."." = "file_picker_in_current_buffer_directory"
+C-y = [
+    ':sh rm -f /tmp/unique-file',
+    ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file', 
+    ':insert-output echo "\x1b[?1049h\x1b[?2004h" > $(readlink /proc/$$/fd/2)',
+    ':open %sh{cat /tmp/unique-file}',
+    ':redraw',
+]
+C-g = [
+    ':new',
+    ':insert-output lazygit',
+    ':buffer-close!',
+    ':redraw',
+]
+

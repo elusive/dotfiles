@@ -1,0 +1,24 @@
+# yazi
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
+}
+
+
+# daily notes
+function daily() {
+  local notes_dir="$HOME/OneDrive - Symetra/Documents/notes"
+  local file="./$(date +%Y-%m-%d).md"
+  mkdir -p "$notes_dir"
+  cd "$notes_dir" || return
+  if [[ ! -f  "$file" ]]; then
+    touch "$file"
+    echo "Created: $file"
+  else
+    echo "Already exists: $file"
+  fi
+  hx "$(basename "$file")"
+}
